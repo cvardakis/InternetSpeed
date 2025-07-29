@@ -19,15 +19,15 @@ def log_network_speed():
     with open(RESULTS_FILE, "a") as file:
         now = datetime.now()
         test_results = internet_test()
-        file.write(f'{now.strftime("%H:%M")}, {test_results[0]}, {test_results[1]}, {test_results[2]}\n')
-        print(f'Results: {now.strftime("%H:%M")}, {test_results[0]}, {test_results[1]}, {test_results[2]}')
+        file.write(f'{now.strftime("%b %m")}, {now.strftime("%H:%M")}, {test_results[0]}, {test_results[1]}, {test_results[2]}\n')
+        print(f'Results: {now.strftime("%b %m")}, {now.strftime("%H:%M")}, {test_results[0]}, {test_results[1]}, {test_results[2]}')
 
 
 
 def check_file():
     if not os.path.exists(RESULTS_FILE):
         with open(RESULTS_FILE, "a") as file:
-            file.write(f'Time, Ping, Download, Upload')
+            file.write(f'Date, Time, Ping, Download, Upload')
 
 
 def monitor_network():
@@ -38,7 +38,7 @@ def monitor_network():
     while True:
         now = datetime.now()
         if now >= next_run:
-            print(f'Testing Network: #{iteration}\n')
+            print(f'Testing Network: #{iteration}')
             log_network_speed()
             iteration += 1
             next_run += interval
